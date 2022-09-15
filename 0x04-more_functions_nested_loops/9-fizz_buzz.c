@@ -23,16 +23,9 @@ int main(void)
 		}
 		else if ((num % 5) == 0)
 		{
-			if (num != 100);
-			{
-				print("Buzz");
-			}
-			else
-			{
-				print("Buzz");
-			}
-			printf('\n');
+			printf("Buzz");
 		}
+		prinf('\n');
 	}
 	printf('\n');
 }
