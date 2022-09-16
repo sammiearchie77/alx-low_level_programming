@@ -1,4 +1,5 @@
 #include <stdio.h>
+i
 /**
  * main - entry point
  *
@@ -18,7 +19,7 @@ int main(void)
 		else if (n % 3 == 0)
 			printf("Fizz");
 		else
-			printf("%i", "\n", n);
+			printf("%n", "\n", n);
 	}
 	return (0)
 }
