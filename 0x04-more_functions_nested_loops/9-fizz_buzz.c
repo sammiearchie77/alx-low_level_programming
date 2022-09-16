@@ -1,5 +1,5 @@
 #include <stdio.h>
-i
+
 /**
  * main - entry point
  *
@@ -21,5 +21,5 @@ int main(void)
 		else
 			printf("%n", "\n", n);
 	}
-	return (0)
+	return (0);
 }
