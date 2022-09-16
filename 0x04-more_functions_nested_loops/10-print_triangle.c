@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * print_triangle - print a triangle
  * Description: The function should print a triangle
