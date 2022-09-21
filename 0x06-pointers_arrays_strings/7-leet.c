@@ -10,8 +10,8 @@ char *leet(char *s)
 {
 	int i, j;
 
-	char *a = "AeEoOtTlL";
-	char *b = "4433997711";
+	char *a = "aAeEoOtTlL";
+	char *b = "4433007711";
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
@@ -19,7 +19,7 @@ char *leet(char *s)
 		{
 			if (s[i] == a[j])
 			{
-				s[i] == b[j];
+				s[i] = b[j];
 			}
 		}
 	}
