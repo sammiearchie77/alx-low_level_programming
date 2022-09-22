@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - Add one line to the code to pribt a[2] = 98
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	int n;
