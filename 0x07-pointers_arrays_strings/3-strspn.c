@@ -1,44 +1,28 @@
-#include "main.h"
+#include "holberton.h"
+#include <stdio.h>
 
 /**
- * _strspn - Locates a character in a string
- * @s: This is the main C string to be scanned.
- * @accept: This is the string containing the list of characters to match in s
- * Return: return count
- **/
-
-unsigned int _strspn(char *s, char *accept)
-
+ * *_strchr - locates a character in a string
+ * @s: string to search
+ * @c: char to find
+ *
+ * Return: a pointer to the first occurrence of the character
+ * c in the string s, or NULL if the character is not found
+ */
+char *_strchr(char *s, char c)
 {
-	int i, j;
-	int count = 0;
-	char *str1, *str2;
+		int a;
 
-	str1 = s;
-	str2 = accept;
-
-	i = 0;
-	while (str1[i] != '\0') /*Declaring WHILE *s */
-	{
-		j = 0;
-		while (str2[j] != '\0') /*Declaring WHILE *accept*/
+		while (1)
 		{
-			if (str2[j] == str1[i]) /*Evaluate condition*/
+			a = *s++;
+			if (a == c)
 			{
-				count++; /*count number*/
-				break;
+				return (s - 1);
 			}
-
-			j++;    /*add j+1*/
+			if (a == 0)
+			{
+				return (NULL);
+			}
 		}
-
-		if (s[i] != accept[j]) /*If aren't equals*/
-		{
-			break;
-		}
-
-		i++; /*add x+1*/
-	}
-
-	return (count); /*return the value of count*/
 }

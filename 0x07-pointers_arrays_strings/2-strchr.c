@@ -1,26 +1,28 @@
-#include "main.h"
+#include "holberton.h"
+#include <stdio.h>
 
 /**
- *_memcpy -   copy number bytes form adress "from" to adress "to"
- *@dest: content is to be copied
- *@src: Source of data to be copied
- *@n: bytes of the memory
- *Return: dest
+ * *_strchr - locates a character in a string
+ * @s: string to search
+ * @c: char to find
+ *
+ * Return: a pointer to the first occurrence of the character
+ * c in the string s, or NULL if the character is not found
  */
-
-char *_memcpy(char *dest, char *src, unsigned int n)
-
+char *_strchr(char *s, char c)
 {
-	unsigned int i;
+		int a;
 
-	i = 0;
-	while (i < n)  /*Delacring WHILE*/
-	{
-		*(dest + i) = *(src + i); /*add 1 position dest and src*/
-		i++;
-
-	} /*END WHILE*/
-
-
-	return (dest);
+		while (1)
+		{
+			a = *s++;
+			if (a == c)
+			{
+				return (s - 1);
+			}
+			if (a == 0)
+			{
+				return (NULL);
+			}
+		}
 }
