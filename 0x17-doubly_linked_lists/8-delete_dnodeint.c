@@ -19,6 +19,7 @@ size_t dlistint_len(const dlistint_t *h)
 	return (count);
 }
 
+
 /**
  * delete_dnodeint_at_index -  deletes the node at index of a linked list
  * @head: head of linked list
@@ -26,6 +27,7 @@ size_t dlistint_len(const dlistint_t *h)
  *
  * Return: 1 if success, 0 if failure
  */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *temp;
@@ -69,4 +71,3 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 	return (-1);
 }
-
