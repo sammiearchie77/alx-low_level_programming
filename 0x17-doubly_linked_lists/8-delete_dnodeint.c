@@ -1,4 +1,4 @@
-uu#include "lists.h"
+#include "lists.h"
 
 /**
  * dlistint_len - returns the number of elements in a dlistint_t list
