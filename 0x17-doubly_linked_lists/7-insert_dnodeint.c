@@ -1,72 +1,51 @@
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * dlistint_len - returns the number of elements in a dlistint_t list
- * @h: head of the linked list
- *
- * Return: number of nodes
+ * insert_dnodeint_at_index - inserts a  new node at a given position.
+ * @head: The first element of the list.
+ * @idx: The position of insertion.
+ * @n: The data of the new node.
+ * Return: The address of the new node if success.
+ *	   NULL otherwise.
  */
-
-size_t dlistinit_len(const dlistint_t *h)
+dlistint_t *insert_dnodeint_at_index(
+		dlistint_t **head, unsigned int idx, int n)
 {
-	int count = 0;
-
-	while (h)
-	{
-		count++;
-		h = h->next;
-	}
-	return (count);
-}
-
-/**
- * insert_dnodeint_at_index - insert a new node at a given position
- * @h: head of the linked list
- * @idx: index of the list where the new node will be added
- *
- * Return: address of the new node, return NUll if fails
- */
-
-d_listint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
-{
-	dlistint_t *new, *temp;
-	size_t length;
+	dlistint_t *tmp, *node;
 	unsigned int i = 0;
 
-	if (h == NULL)
-		return ('\0');
-	if (idx == 0)
-		return (add_dnodeint(h, n));
-
-	length = dlistint_len(*);
-	if (idx == length - 1)
-		return (add_dnodeint_end(h. n));
-
-	new = malloc(sizeo(9dlistint_t));
-	if (new == NULL)
-		return ('\0');
-	new->n = n;
-	if (*h == NULL)
+	node = malloc(sizeof(dlistint_t));
+	if (node)
 	{
-		new->prev = NULL;
-		new->next = NULL;
-		*h = new;
-		return (new);
-	}
-	temp = *h;
-	while (temp)
-	{
-		if (i == idx)
+		node->n = n;
+		if (idx == 0 || head == NULL)
 		{
-			new->next = temp;
-			new->prev = temp->prev;
-			temp->prev->next = new;
-			temp->prev = new;
-			return (new);
+			add_dnodeint(head, n);
 		}
-		temp = temp->next;
-		i++;
+		else
+		{
+			tmp = *head;
+			while ((tmp != NULL) && (i + 1 < idx))
+			{
+				tmp = tmp->next;
+				i++;
+			}
+			if (i + 1  == idx)
+			{
+				if (tmp == NULL)
+				{
+					add_dnodeint_end(head, n);
+				}
+				else
+				{
+					node->prev = tmp;
+					node->next = tmp->next;
+					tmp->next = node;
+					(node->next)->prev = node;
+				}
+			}
+		}
 	}
-	free(new);
-	return ('\0');
+	return (node);
 }
