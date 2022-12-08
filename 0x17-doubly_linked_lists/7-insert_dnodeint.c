@@ -1,51 +1,77 @@
-#include <stdlib.h>
 #include "lists.h"
 
+
 /**
- * insert_dnodeint_at_index - inserts a  new node at a given position.
- * @head: The first element of the list.
- * @idx: The position of insertion.
- * @n: The data of the new node.
- * Return: The address of the new node if success.
- *	   NULL otherwise.
+ * dlistint_len - returns the number of elements in a dlistint_t list
+ * @h: head of doubly linked list
+ *
+ * Return: number of nodes
  */
-dlistint_t *insert_dnodeint_at_index(
-		dlistint_t **head, unsigned int idx, int n)
+
+size_t dlistint_len(const dlistint_t *h)
 {
-	dlistint_t *tmp, *node;
+	int count = 0;
+
+	while (h)
+	{
+		count++;
+		h = h->next;
+	}
+	return (count);
+}
+
+
+
+/**
+ * insert_dnodeint_at_index - inserts a new node at a given position
+ * @h: head of linked list
+ * @idx: index
+ * @n: integer value of node
+ *
+ * Return: address of new node, return NULL if fails
+ */
+
+
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+{
+	dlistint_t *new, *temp;
+	size_t length;
 	unsigned int i = 0;
 
-	node = malloc(sizeof(dlistint_t));
-	if (node)
+	if (h == NULL)
+		return (NULL);
+	if (idx == 0)
+		return (add_dnodeint(h, n));
+
+	length = dlistint_len(*h);
+	if (idx == length - 1)
+		return (add_dnodeint_end(h, n));
+
+	new = malloc(sizeof(dlistint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n;
+	if (*h == NULL)
 	{
-		node->n = n;
-		if (idx == 0 || head == NULL)
-		{
-			add_dnodeint(head, n);
-		}
-		else
-		{
-			tmp = *head;
-			while ((tmp != NULL) && (i + 1 < idx))
-			{
-				tmp = tmp->next;
-				i++;
-			}
-			if (i + 1  == idx)
-			{
-				if (tmp == NULL)
-				{
-					add_dnodeint_end(head, n);
-				}
-				else
-				{
-					node->prev = tmp;
-					node->next = tmp->next;
-					tmp->next = node;
-					(node->next)->prev = node;
-				}
-			}
-		}
+		new->prev = NULL;
+		new->next = NULL;
+		*h = new;
+		return (new);
 	}
-	return (node);
+	temp = *h;
+	while (temp)
+	{
+		if (i == idx)
+		{
+			new->next = temp;
+			new->prev = temp->prev;
+			temp->prev->next = new;
+			temp->prev = new;
+			return (new);
+		}
+		temp = temp->next;
+		i++;
+	}
+	free(new);
+	return (NULL);
 }

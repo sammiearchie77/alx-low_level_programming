@@ -1,30 +1,73 @@
-#include <stdlib.h>
-#include "lists.h"
+uu#include "lists.h"
+
 /**
- * delete_dnodeint_at_index - Deletes the node at a given index.
- * @head: The first element of the list.
- * @index: The position of the node to delete.
- * Return: 1 if failure. -1 otherwise.
+ * dlistint_len - returns the number of elements in a dlistint_t list
+ * @h: head of doubly linked list
+ *
+ * Return: number of nodes
  */
+
+size_t dlistint_len(const dlistint_t *h)
+{
+	int count = 0;
+
+	while (h)
+	{
+		count++;
+		h = h->next;
+	}
+	return (count);
+}
+
+
+/**
+ * delete_dnodeint_at_index -  deletes the node at index of a linked list
+ * @head: head of linked list
+ * @index: index of node to delete
+ *
+ * Return: 1 if success, 0 if failure
+ */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
+	dlistint_t *temp;
+	size_t length;
 	unsigned int i = 0;
-	dlistint_t *tmp;
 
-	tmp = *head;
-	while ((tmp->next != NULL) && (i < index))
+	if (head == NULL || *head == NULL)
+		return (-1);
+
+	length = dlistint_len(*head);
+	if (index >= length)
+		return (-1);
+	temp = *head;
+	if (index == 0)
 	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (tmp)
-	{
-		if (tmp->prev)
-			tmp->prev->next = tmp->next;
-		if (tmp->next)
-			tmp->next->prev = tmp->prev;
-		free(tmp);
+		*head = temp->next;
+		if (*head != NULL)
+			(*head)->prev = NULL;
+		free(temp);
 		return (1);
+	}
+	if (index == (length - 1))
+	{
+		while (temp->next)
+		{
+			temp = temp->next;
+		}
+		free(temp);
+	}
+	while (temp)
+	{
+		if (i == index)
+		{
+			temp->next->prev = temp->prev;
+			temp->prev->next = temp->next;
+			free(temp);
+			return (1);
+		}
+		temp = temp->next;
+		i++;
 	}
 	return (-1);
 }
