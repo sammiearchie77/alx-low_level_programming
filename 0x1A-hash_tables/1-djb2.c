@@ -1,12 +1,12 @@
 #include "hash_tables.h"
 
 /**
- * hash_djd2 - hash function implementing the djd2 algorithm
- * @str: The string to hash.
+ * hash_djb2 - implemention of the djd2 algorithm
+ * @str: string used to generate hash value.
  *
- * Return: The calculated hash.
+ * Return: hash value.
  */
-unsigned long int hash_djd2(const unsigned char *str)
+unsigned long int hash_djb2(const unsigned char *str)
 {
 	unsigned long int hash;
 	int c;
